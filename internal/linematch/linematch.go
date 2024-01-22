@@ -1,7 +1,5 @@
 package linematch
 
-import "testing"
-
 func FindLineMismatch(left string, right string) int {
   /*linesA := strings.Split(A,"\n")
   linesB := strings.Split(B,"\n")
@@ -16,4 +14,6 @@ func FindLineMismatch(left string, right string) int {
     if 
     
   }*/
+  
+  return -1
 }
