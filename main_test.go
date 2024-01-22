@@ -36,21 +36,21 @@ func validateTests(t *testing.T) {
 		outputFileName := "testdata/" + file.Name() + "/output.md"
 		verificationFileName := "testdata/" + file.Name() + "/verification.md"
 
-		_, err = os.ReadFile(inputFileName)
+		input, err := os.ReadFile(inputFileName)
 
 		if err != nil {
 			t.Logf("input.md file at %s could not be opened\n", inputFileName)
 			t.Fail()
 		}
 
-		_, err = os.ReadFile(outputFileName)
+		output, err := os.ReadFile(outputFileName)
 
 		if err != nil {
 			t.Logf("output.md file at %s could not be opened\n", outputFileName)
 			t.Fail()
 		}
 
-		_, err = os.ReadFile(verificationFileName)
+		verification, err := os.ReadFile(verificationFileName)
 
 		if err != nil {
 			t.Logf("verification.md file at %s could not be opened\n", verificationFileName)
@@ -66,6 +66,11 @@ func validateTests(t *testing.T) {
 func validateTestCase(t *testing.T, testCase string, input string, output string, verification string) {
 	if symbols.SymbolsOnly(input) != symbols.SymbolsOnly(output) {
 		t.Logf("Error in %s: input and output files do not match symbol-wise", testCase)
+		t.Fail()
+	}
+	
+	if output != verification {
+	  t.Logf("Error in %s: output and verification files do not match", testCase)
 		t.Fail()
 	}
 }
