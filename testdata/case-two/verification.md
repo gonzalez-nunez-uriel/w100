@@ -19,7 +19,7 @@ Ivanovna took it and gave him a polite, even ceremonious, bow.
 
 “I thank you, honoured sir,” she began loftily. “The causes that have induced us (take the money,
 Polenka: you see there are generous and honourable people who are ready to help a poor gentlewoman
-in distress). You see, honoured sir, these orphans of good family — I might even say of aristocratic connections — and that wretch of a <- general sat eating grouse... and stamped at my disturbing him.
+in distress). You see, honoured sir, these orphans of good family — I might even say of aristocratic connections — and that wretch of a general sat eating grouse... and stamped at my disturbing him.
 ‘Your excellency,’ I said, ‘protect the orphans, for you knew my late husband, Semyon Zaharovitch,
 and on the very day of his death the basest of scoundrels slandered his only daughter.’... That
 policeman again! Protect me,” she cried to the official. “Why is that policeman edging up to me? We
