@@ -4,11 +4,12 @@ import "testing"
 
 func TestFindLineMismatch(t *testing.T) {
 	testOne(t)
+	testTwo(t)
 }
 
 func testOne(t *testing.T) {
-	left := "This two strings\nhave a mismatch\nin the middle line."
-	right := "This two strings\nhave @ mismatch\nin the middle line."
+	left := "These two strings\nhave a mismatch\nin the middle line."
+	right := "These two strings\nhave @ mismatch\nin the middle line."
 	//                               ^
 	// mismatch here ----------------|
 
@@ -29,7 +30,7 @@ func testTwo(t *testing.T) {
 	mismatchLineNumber := FindLineMismatch(left, right)
 
 	if mismatchLineNumber != 1 {
-		t.Logf("Failed test one. Expected 1, got %d", mismatchLineNumber)
+		t.Logf("Failed test two. Expected 1, got %d", mismatchLineNumber)
 		t.Fail()
 	}
 }
