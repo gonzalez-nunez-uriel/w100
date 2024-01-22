@@ -6,6 +6,8 @@ func TestFindLineMismatch(t *testing.T) {
 	testOne(t)
 	testTwo(t)
 	testThree(t)
+	testFour(t)
+	testFive(t)
 }
 
 // Simple test
@@ -70,3 +72,21 @@ func testFour(t *testing.T) {
 		t.Fail()
 	}
 }
+
+// Multiple word mismatches
+// It should report the first mismatch
+// The two mismatches are adjacent
+func testFive(t *testing.T) {
+	left := "These strings\nhave more than\n one mismatch.\n\nThe first is in\nthe second line."
+	right := "These strings\nhave two\nmismatches.\n\nThe first is in\nthe second line"
+	//                            ^    ^
+	// mismatches here -----------|----|
+
+	mismatchLineNumber := FindLineMismatch(left, right)
+
+	if mismatchLineNumber != 2 {
+		t.Logf("Failed test five. Expected 2, got %d", mismatchLineNumber)
+		t.Fail()
+	}
+}
+
