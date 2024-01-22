@@ -2,7 +2,7 @@ package linematch
 
 import "testing"
 
-func FindLineMismatch(t *testing.T , A string, B string) {
+func FindLineMismatch(left string, right string) {
   /*linesA := strings.Split(A,"\n")
   linesB := strings.Split(B,"\n")
   
