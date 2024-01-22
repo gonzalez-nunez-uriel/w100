@@ -4,6 +4,7 @@ import (
 	"github.com/gonzalez-nunez-uriel/w100/internal/symbols"
 	"os"
 	"testing"
+	"strings"
 )
 
 /*
@@ -75,4 +76,16 @@ func validateTestCase(t *testing.T, testCase string, input string, output string
 		//findLineMismatch(t, output, verification)
 		t.Fail()
 	}
+}
+
+func findLineMismatch(t *testing.T, A string, B string) {
+  lineCount := 0
+  for {
+    lineDelimA := strings.Index(A, "\n")
+    lineDelimB := strings.Index(B, "\n")
+    
+    if lineDelimA == lineDelimB && lineDelimB != -1 {
+      
+    }
+  }
 }
