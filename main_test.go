@@ -16,6 +16,7 @@ func TestFormatWidth100(t *testing.T) {
 	
 	r := FormatWidth100("dummy string")
 	t.Logf("End of test%s\n", r)
+	t.Fail()
 }
 
 func validateTests(t *testing.T) {
