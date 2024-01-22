@@ -11,14 +11,18 @@ implementation.
 */
 
 func TestFormatWidth100(t *testing.T) {
+  t.Log("Start of test")
 	validateTests(t)
+	
+	r := FormatWidth100("dummy string")
+	t.Logf("End of test%s\n", r)
 }
 
 func validateTests(t *testing.T) {
 
 	testCases, err := os.ReadDir("testdata")
 
-	if err != nill {
+	if err != nil {
 		t.Log("testdata directory could not be read")
 	}
 
