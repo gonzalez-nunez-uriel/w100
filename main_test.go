@@ -28,6 +28,20 @@ func validateTests(t *testing.T) {
 		t.Fail()
 	}
 
+  for _, file := range testCases {
+    // For more information on naming conventions read TODO: EXPLAIN TESTING NAMING CONVENTIONS AND ARCHITECTURE
+    inputFileName := file.Name() + "/input.md"
+    outputFileName := file.Name() + "/output.md"
+    verificationFileName := file.Name() + "/verification.md"
+		
+		inputFile, err := os.ReadFile(inputFileName)
+		
+		if err != nil {
+		  t.Error("input.md file at %s could not be opened", file.Name())
+		}
+		
+		outputFile, err := os.ReadFile(outputFileName)
+	}
 	
 
 	t.Fail()
@@ -36,7 +50,5 @@ func validateTests(t *testing.T) {
 
 
 func generateFileNames(t *testing.T, dirsOfCases []DirEntry) ([]string, []string, []string) {
-  for _, file := range testCases {
-		t.Logf("%s/input.md", file.Name())
-	}
+  
 }
