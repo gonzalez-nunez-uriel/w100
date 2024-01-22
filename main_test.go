@@ -37,21 +37,37 @@ func validateTests(t *testing.T) {
 		input, err := os.ReadFile(inputFileName)
 
 		if err != nil {
-			t.Error("input.md file at %s could not be opened", file.Name())
+			t.Logf("input.md file at %s could not be opened\n", file.Name())
+			t.Fail()
 		}
 
 		output, err := os.ReadFile(outputFileName)
 
 		if err != nil {
-			t.Error("output.md file at %s could not be opened", file.Name())
+			t.Logf("output.md file at %s could not be opened\n", file.Name())
+			t.Fail()
 		}
 
 		verification, err := os.ReadFile(verificationFileName)
 
 		if err != nil {
-			t.Error("verification.md file at %s could not be opened", file.Name())
+			t.Logf("verification.md file at %s could not be opened\n", file.Name())
+			t.Fail()
 		}
+
+		validateTestCase(t, string(input), string(output), string(verification))
 	}
 
 	t.Fail()
+}
+
+func validateTestCase(t *testing.T, input string, output string, verification string) {
+	t.Log("Input:")
+	t.Log(input)
+	t.Log("-------------------------------")
+	t.Log("Output:")
+	t.Log(output)
+	t.Log("-------------------------------")
+	t.Log("Verification:")
+	t.Log(verification)
 }
