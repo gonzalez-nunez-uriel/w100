@@ -5,6 +5,7 @@ import "testing"
 func TestFindLineMismatch(t *testing.T) {
 	testOne(t)
 	testTwo(t)
+	testThree(t)
 }
 
 func testOne(t *testing.T) {
@@ -31,6 +32,20 @@ func testTwo(t *testing.T) {
 
 	if mismatchLineNumber != 1 {
 		t.Logf("Failed test two. Expected 1, got %d", mismatchLineNumber)
+		t.Fail()
+	}
+}
+
+func testThree(t *testing.T) {
+	left := "These strings\nhave an empty line\n\nand a mistmatch\nin the last line."
+	right := "These strings\nhave an empty line\n\nand a mistmatch\nin the end."
+	//                                                                     ^
+	// mismatch here ------------------------------------------------------|
+
+	mismatchLineNumber := FindLineMismatch(left, right)
+
+	if mismatchLineNumber != 4 {
+		t.Logf("Failed test three. Expected 4, got %d", mismatchLineNumber)
 		t.Fail()
 	}
 }
