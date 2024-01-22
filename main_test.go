@@ -30,9 +30,9 @@ func validateTests(t *testing.T) {
 
 	for _, file := range testCases {
 		// For more information on naming conventions read TODO: EXPLAIN TESTING NAMING CONVENTIONS AND ARCHITECTURE
-		inputFileName := file.Name() + "/input.md"
-		outputFileName := file.Name() + "/output.md"
-		verificationFileName := file.Name() + "/verification.md"
+		inputFileName := "testdata/" + file.Name() + "/input.md"
+		outputFileName := "testdata/" + file.Name() + "/output.md"
+		verificationFileName := "testdata/" + file.Name() + "/verification.md"
 
 		input, err := os.ReadFile(inputFileName)
 
