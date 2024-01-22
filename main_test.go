@@ -34,21 +34,15 @@ func validateTests(t *testing.T) {
     outputFileName := file.Name() + "/output.md"
     verificationFileName := file.Name() + "/verification.md"
 		
-		inputFile, err := os.ReadFile(inputFileName)
+		input, err := os.ReadFile(inputFileName)
 		
 		if err != nil {
 		  t.Error("input.md file at %s could not be opened", file.Name())
 		}
 		
-		outputFile, err := os.ReadFile(outputFileName)
+		output, err := os.ReadFile(outputFileName)
 	}
 	
 
 	t.Fail()
-}
-
-
-
-func generateFileNames(t *testing.T, dirsOfCases []DirEntry) ([]string, []string, []string) {
-  
 }
