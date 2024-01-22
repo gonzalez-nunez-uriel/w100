@@ -29,6 +29,7 @@ func validateTests(t *testing.T) {
 	}
 
 	for _, file := range testCases {
+		t.Log(file.Name())
 		// For more information on naming conventions read TODO: EXPLAIN TESTING NAMING CONVENTIONS AND ARCHITECTURE
 		inputFileName := "testdata/" + file.Name() + "/input.md"
 		outputFileName := "testdata/" + file.Name() + "/output.md"
@@ -55,19 +56,13 @@ func validateTests(t *testing.T) {
 			t.Fail()
 		}
 
-		validateTestCase(t, string(input), string(output), string(verification))
+		//validateTestCase(t, string(input), string(output), string(verification))
 	}
 
 	t.Fail()
 }
 
+/*
 func validateTestCase(t *testing.T, input string, output string, verification string) {
-	t.Log("Input:")
-	t.Log(input)
-	t.Log("-------------------------------")
-	t.Log("Output:")
-	t.Log(output)
-	t.Log("-------------------------------")
-	t.Log("Verification:")
-	t.Log(verification)
-}
+
+}*/
