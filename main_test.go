@@ -28,14 +28,15 @@ func validateTests(t *testing.T) {
 		t.Fail()
 	}
 
-	// For the time being, just print the dir names
-	for _, file := range testCases {
-		t.Logf("%s/input.md", file.Name())
-	}
+	
 
 	t.Fail()
+}
 
-	//for each folder in the list append the appropriate file names to open the right data
 
-	//perform verifications on the contents of the files
+
+func generateFileNames(t *testing.T, dirsOfCases []DirEntry) ([]string, []string, []string) {
+  for _, file := range testCases {
+		t.Logf("%s/input.md", file.Name())
+	}
 }
