@@ -77,19 +77,3 @@ func validateTestCase(t *testing.T, testCase string, input string, output string
 		t.Fail()
 	}
 }
-
-func findLineMismatch(t *testing.T, A string, B string) {
-  linesA := strings.Split(A,"\n")
-  linesB := strings.Split(B,"\n")
-  
-  maxIndexA := len(linesA)
-  maxIndexB := len(linesB)
-  
-  index := 0
-  var lineA string
-  var lineB string
-  for {
-    if 
-    
-  }
-}
