@@ -11,9 +11,9 @@ implementation.
 */
 
 func TestFormatWidth100(t *testing.T) {
-  t.Log("Start of test")
+	t.Log("Start of test")
 	validateTests(t)
-	
+
 	r := FormatWidth100("dummy string")
 	t.Logf("End of test%s\n", r)
 	t.Fail()
@@ -25,12 +25,15 @@ func validateTests(t *testing.T) {
 
 	if err != nil {
 		t.Log("testdata directory could not be read")
+		t.Fail()
 	}
 
 	// For the time being, just print the dir names
 	for _, file := range testCases {
-		t.Log(file.Name())
+		t.Logf("%s/input.md", file.Name())
 	}
+
+	t.Fail()
 
 	//for each folder in the list append the appropriate file names to open the right data
 
