@@ -66,11 +66,13 @@ func validateTests(t *testing.T) {
 func validateTestCase(t *testing.T, testCase string, input string, output string, verification string) {
 	if symbols.SymbolsOnly(input) != symbols.SymbolsOnly(output) {
 		t.Logf("Error in %s: input and output files do not match symbol-wise", testCase)
+		//findStowawayChar(t, input, output)
 		t.Fail()
 	}
 	
 	if output != verification {
 	  t.Logf("Error in %s: output and verification files do not match", testCase)
+		//findLineMismatch(t, output, verification)
 		t.Fail()
 	}
 }
