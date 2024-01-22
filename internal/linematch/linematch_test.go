@@ -53,3 +53,20 @@ func testThree(t *testing.T) {
 		t.Fail()
 	}
 }
+
+// Multiple single-char mismatches
+// It should report the first mismatch
+// The two mismatches are adjacent
+func testFour(t *testing.T) {
+	left := "These strings\nhave more than\n one mismatch.\n\nThe first is in\nthe third line."
+	right := "These strings\nhave more than\n 0ne mismatch.\n\nThe first i% in\nthe third line."
+	//                                        ^                           ^
+	// mismatches here -----------------------|---------------------------|
+
+	mismatchLineNumber := FindLineMismatch(left, right)
+
+	if mismatchLineNumber != 3 {
+		t.Logf("Failed test four. Expected 3, got %d", mismatchLineNumber)
+		t.Fail()
+	}
+}
