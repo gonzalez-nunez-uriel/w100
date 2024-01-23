@@ -40,7 +40,6 @@ func FindLineMismatch(left string, right string) int {
 		} else {
 			// One string is longer than the other.
 			// The current line number is where the strings differ
-			// TODO: this test case has not been considered and implemented
 			return lineNumber
 		}
 	}
