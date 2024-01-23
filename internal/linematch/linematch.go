@@ -24,10 +24,8 @@ func FindLineMismatch(left string, right string) int {
 	var currentLeftLine string
 	var currentRightLine string
 	for {
-		canAccessLeftLines := index <= maxLeftIndex
-		canAccessRightLines := index <= maxRightIndex
 
-		if canAccessLeftLines && canAccessRightLines {
+		if bothSlicesCanBeAccessed(index, maxLeftIndex, maxRightIndex) {
 			currentLeftLine = leftLines[index]
 			currentRightLine = rightLines[index]
 
@@ -47,4 +45,8 @@ func FindLineMismatch(left string, right string) int {
 
 func splitStringIntoLines(input string) []string {
 	return strings.Split(input, "\n")
+}
+
+func bothSlicesCanBeAccessed(index int, maxLeftIndex int, maxRightIndex int) bool {
+	return index <= maxLeftIndex && index <= maxRightIndex
 }
