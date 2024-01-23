@@ -71,8 +71,8 @@ func testOneCharMismatchAtFirstLine(t *testing.T) {
 // More than one char mismatch
 // Mismatch at the last line
 func testOneWordMismatchAtLastLine(t *testing.T) {
-	left := "These strings\nhave an empty line\n\nand a mistmatch\nin the last line."
-	right := "These strings\nhave an empty line\n\nand a mistmatch\nin the end."
+	left := "These strings\nhave an empty line\n\nand a mismatch\nin the last line."
+	right := "These strings\nhave an empty line\n\nand a mismatch\nin the end."
 	const expectedValue = 5
 	//                                                                     ^
 	// mismatch here ------------------------------------------------------|
