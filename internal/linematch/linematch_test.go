@@ -9,7 +9,7 @@ func TestFindLineMismatch(t *testing.T) {
 	testOneCharMismatchAtFirstLine(t)
 	testOneWordMismatchAtLastLine(t)
 	testMultipleSingleCharMismatches(t)
-	testFive(t)
+	testMultipleWordMismatches(t)
 }
 
 // In case both strings are identical, the result should be -1
@@ -104,7 +104,7 @@ func testMultipleSingleCharMismatches(t *testing.T) {
 // Multiple word mismatches
 // It should report the first mismatch
 // The two mismatches are adjacent
-func testFive(t *testing.T) {
+func testMultipleWordMismatches(t *testing.T) {
 	left := "These strings\nhave more than\n one mismatch.\n\nThe first is in\nthe second line."
 	right := "These strings\nhave two\nmismatches.\n\nThe first is in\nthe second line"
 	//                            ^    ^
