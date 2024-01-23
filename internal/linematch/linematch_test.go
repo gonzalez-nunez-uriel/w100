@@ -117,3 +117,15 @@ func testMultipleWordMismatches(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func testMatchingStringsButOneHasMoreLines(t *testing.T) {
+  left := "These two\nstrings match char\nby char."
+  right := "These two\nstrings match char\nby char.\nBut one has\nmore lines."
+  // line       1             2               3      ^     4
+	// mismatches here --------------------------------|
+  
+  if mismatchLineNumber != 4 {
+		t.Logf("When two stings match line by line but one is longer than the other the next line number of the longer string is the expected value. Expected 4, got %d", mismatchLineNumber)
+		t.Fail()
+	}
+}
