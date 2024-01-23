@@ -7,10 +7,6 @@ func FindLineMismatch(left string, right string) int {
 		return -1
 	}
 
-	if left == "" || right == "" {
-		return 1
-	}
-
 	return findLineMismatchOfTwoDifferentNonEmptyStrings(left, right)
 }
 
