@@ -32,15 +32,11 @@ func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) in
 
 	index := 0
 	lineNumber := 1
-	var currentLeftLine string
-	var currentRightLine string
 	for {
 
 		if bothSlicesCanBeAccessed(index, maxLeftIndex, maxRightIndex) {
-			currentLeftLine = leftLines[index]
-			currentRightLine = rightLines[index]
 
-			if currentLeftLine != currentRightLine {
+			if linesAreDifferent(index, leftLines, rightLines) {
 				return lineNumber
 			} else {
 				index += 1
@@ -52,4 +48,8 @@ func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) in
 			return lineNumber
 		}
 	}
+}
+
+func linesAreDifferent(index int, leftLines []string, rightLines []string) bool {
+	return leftLines[index] != rightLines[index]
 }
