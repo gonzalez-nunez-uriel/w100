@@ -124,6 +124,8 @@ func testMatchingStringsButOneHasMoreLines(t *testing.T) {
 	// line       1             2               3      ^     4
 	// mismatches here --------------------------------|
 
+	mismatchLineNumber := FindLineMismatch(left, right)
+
 	if mismatchLineNumber != 4 {
 		t.Logf("When two stings match line by line but one is longer than the other the next line number of the longer string is the expected value. Expected 4, got %d", mismatchLineNumber)
 		t.Fail()
