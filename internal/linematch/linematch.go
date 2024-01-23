@@ -15,5 +15,5 @@ func FindLineMismatch(left string, right string) int {
 
 	  }*/
 
-	return -1
+	return -10
 }

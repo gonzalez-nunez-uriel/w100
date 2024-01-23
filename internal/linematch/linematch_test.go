@@ -3,11 +3,25 @@ package linematch
 import "testing"
 
 func TestFindLineMismatch(t *testing.T) {
+	testIdenticalStrings(t)
 	testOne(t)
 	testTwo(t)
 	testThree(t)
 	testFour(t)
 	testFive(t)
+}
+
+// In case both strings are identical
+func testIdenticalStrings(t *testing.T) {
+  left := "Th3se TWO 5tings @re 1dentical$*!\n\nThe #^% #$() result should\nbe negative 0ne.\n"
+  right := "Th3se TWO 5tings @re 1dentical$*!\n\nThe #^% #$() result should\nbe negative 0ne.\n"
+  
+  mismatchLineNumber := FindLineMismatch(left, right)
+
+	if mismatchLineNumber != -1 {
+		t.Logf("For two identical strings the output should be -1, got %d", mismatchLineNumber)
+		t.Fail()
+	}
 }
 
 // Simple test
