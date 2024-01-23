@@ -11,7 +11,7 @@ func FindLineMismatch(left string, right string) int {
 		return 1
 	}
 
-	return findLineMismatchOfTwoDifferentNonEmptyStrings()
+	return findLineMismatchOfTwoDifferentNonEmptyStrings(left, right)
 }
 
 func splitStringIntoLines(input string) []string {
@@ -23,6 +23,7 @@ func bothSlicesCanBeAccessed(index int, maxLeftIndex int, maxRightIndex int) boo
 }
 
 func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) int {
+
 	leftLines := splitStringIntoLines(left)
 	rightLines := splitStringIntoLines(right)
 
