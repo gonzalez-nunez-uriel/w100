@@ -4,6 +4,7 @@ import "testing"
 
 func TestFindLineMismatch(t *testing.T) {
 	testIdenticalStrings(t)
+	testOneStringIsEmpty(t)
 	testOne(t)
 	testTwo(t)
 	testThree(t)
@@ -11,7 +12,7 @@ func TestFindLineMismatch(t *testing.T) {
 	testFive(t)
 }
 
-// In case both strings are identical
+// In case both strings are identical, the result should be -1
 func testIdenticalStrings(t *testing.T) {
 	left := "Th3se TWO 5tings @re 1dentical$*!\n\nThe #^% #$() result should\nbe negative 0ne.\n"
 	right := "Th3se TWO 5tings @re 1dentical$*!\n\nThe #^% #$() result should\nbe negative 0ne.\n"
@@ -20,6 +21,19 @@ func testIdenticalStrings(t *testing.T) {
 
 	if mismatchLineNumber != -1 {
 		t.Logf("For two identical strings the output should be -1, got %d", mismatchLineNumber)
+		t.Fail()
+	}
+}
+
+// If one of the strings is empty, the result should be 1
+func testOneStringIsEmpty(t *testing.T) {
+  left := "0ne of th3se %trings is empty.\n\n The result should BE one."
+	right := ""
+	
+	mismatchLineNumber := FindLineMismatch(left, right)
+
+	if mismatchLineNumber != 1 {
+		t.Logf("If one of the strings is empty the result should be 1, got %d", mismatchLineNumber)
 		t.Fail()
 	}
 }
