@@ -7,6 +7,10 @@ func FindLineMismatch(left string, right string) int {
 		return -1
 	}
 
+	if left == "" || right == "" {
+		return 1
+	}
+
 	return findLineMismatchOfTwoDifferentNonEmptyStrings(left, right)
 }
 
@@ -31,7 +35,7 @@ func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) in
 				lineNumber += 1
 			}
 		} else {
-			// One string is longer than the other.
+			// One string is a subtring of the other
 			// The current line number is where the strings differ
 			return lineNumber
 		}
