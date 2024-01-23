@@ -73,13 +73,14 @@ func testOneCharMismatchAtFirstLine(t *testing.T) {
 func testOneWordMismatchAtLastLine(t *testing.T) {
 	left := "These strings\nhave an empty line\n\nand a mistmatch\nin the last line."
 	right := "These strings\nhave an empty line\n\nand a mistmatch\nin the end."
+	const expectedValue = 5
 	//                                                                     ^
 	// mismatch here ------------------------------------------------------|
 
 	mismatchLineNumber := FindLineMismatch(left, right)
 
-	if mismatchLineNumber != 4 {
-		t.Logf("Failed one word mismatch at the last line. Expected 4, got %d", mismatchLineNumber)
+	if mismatchLineNumber != expectedValue {
+		t.Logf("Failed one word mismatch at the last line. Expected %d, got %d", expectedValue, mismatchLineNumber)
 		t.Fail()
 	}
 }
