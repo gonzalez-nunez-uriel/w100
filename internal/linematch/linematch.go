@@ -13,8 +13,8 @@ func FindLineMismatch(left string, right string) int {
 
 	// After this point both left and right must have at least one line
 
-	leftLines := strings.Split(left, "\n")
-	rightLines := strings.Split(right, "\n")
+	leftLines := splitStringIntoLines(left)
+	rightLines := splitStringIntoLines(right)
 
 	maxLeftIndex := len(leftLines) - 1
 	maxRightIndex := len(rightLines) - 1
@@ -43,4 +43,8 @@ func FindLineMismatch(left string, right string) int {
 			return lineNumber
 		}
 	}
+}
+
+func splitStringIntoLines(input string) []string {
+	return strings.Split(input, "\n")
 }
