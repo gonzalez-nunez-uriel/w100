@@ -5,8 +5,8 @@ import "testing"
 func TestFindLineMismatch(t *testing.T) {
 	testIdenticalStrings(t)
 	testOneStringIsEmpty(t)
-	testOne(t)
-	testTwo(t)
+	simpleTest(t)
+	testMismatchAtFirstLine(t)
 	testThree(t)
 	testFour(t)
 	testFive(t)
@@ -39,7 +39,7 @@ func testOneStringIsEmpty(t *testing.T) {
 }
 
 // Simple test
-func testOne(t *testing.T) {
+func simpleTest(t *testing.T) {
 	left := "These two strings\nhave a mismatch\nin the middle line."
 	right := "These two strings\nhave @ mismatch\nin the middle line."
 	//                               ^
@@ -54,7 +54,7 @@ func testOne(t *testing.T) {
 }
 
 // Mismatch at the first line
-func testTwo(t *testing.T) {
+func testMismatchAtFirstLine(t *testing.T) {
 	left := "Another two strings\nthat have a mismatch\nin the first line."
 	right := "Another tw* strings\nthat have a mismatch\nin the first line."
 	//                  ^
