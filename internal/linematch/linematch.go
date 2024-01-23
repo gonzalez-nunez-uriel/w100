@@ -34,8 +34,8 @@ func FindLineMismatch(left string, right string) int {
 			if currentLeftLine != currentRightLine {
 				return lineNumber
 			} else {
-				index += index
-				lineNumber += lineNumber
+				index += 1
+				lineNumber += 1
 			}
 		} else {
 			// One string is longer than the other.
