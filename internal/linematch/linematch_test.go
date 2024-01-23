@@ -27,9 +27,9 @@ func testIdenticalStrings(t *testing.T) {
 
 // If one of the strings is empty, the result should be 1
 func testOneStringIsEmpty(t *testing.T) {
-  left := "0ne of th3se %trings is empty.\n\n The result should BE one."
+	left := "0ne of th3se %trings is empty.\n\n The result should BE one."
 	right := ""
-	
+
 	mismatchLineNumber := FindLineMismatch(left, right)
 
 	if mismatchLineNumber != 1 {
