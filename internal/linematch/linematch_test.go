@@ -6,8 +6,8 @@ func TestFindLineMismatch(t *testing.T) {
 	testIdenticalStrings(t)
 	testOneStringIsEmpty(t)
 	simpleTest(t)
-	testMismatchAtFirstLine(t)
-	testThree(t)
+	testOneCharMismatchAtFirstLine(t)
+	testOneWordMismatchAtLastLine(t)
 	testFour(t)
 	testFive(t)
 }
@@ -54,7 +54,7 @@ func simpleTest(t *testing.T) {
 }
 
 // Mismatch at the first line
-func testMismatchAtFirstLine(t *testing.T) {
+func testOneCharMismatchAtFirstLine(t *testing.T) {
 	left := "Another two strings\nthat have a mismatch\nin the first line."
 	right := "Another tw* strings\nthat have a mismatch\nin the first line."
 	//                  ^
@@ -70,7 +70,7 @@ func testMismatchAtFirstLine(t *testing.T) {
 
 // More than one char mismatch
 // Mismatch at the last line
-func testThree(t *testing.T) {
+func testOneWordMismatchAtLastLine(t *testing.T) {
 	left := "These strings\nhave an empty line\n\nand a mistmatch\nin the last line."
 	right := "These strings\nhave an empty line\n\nand a mistmatch\nin the end."
 	//                                                                     ^
