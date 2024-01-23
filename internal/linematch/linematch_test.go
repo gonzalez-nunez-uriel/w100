@@ -48,7 +48,7 @@ func simpleTest(t *testing.T) {
 	mismatchLineNumber := FindLineMismatch(left, right)
 
 	if mismatchLineNumber != 2 {
-		t.Logf("Failed test one. Expected 2, got %d", mismatchLineNumber)
+		t.Logf("Failed simple test case. Expected 2, got %d", mismatchLineNumber)
 		t.Fail()
 	}
 }
@@ -63,7 +63,7 @@ func testOneCharMismatchAtFirstLine(t *testing.T) {
 	mismatchLineNumber := FindLineMismatch(left, right)
 
 	if mismatchLineNumber != 1 {
-		t.Logf("Failed test two. Expected 1, got %d", mismatchLineNumber)
+		t.Logf("Failed one char mismatch in the first line. Expected 1, got %d", mismatchLineNumber)
 		t.Fail()
 	}
 }
@@ -79,7 +79,7 @@ func testOneWordMismatchAtLastLine(t *testing.T) {
 	mismatchLineNumber := FindLineMismatch(left, right)
 
 	if mismatchLineNumber != 4 {
-		t.Logf("Failed test three. Expected 4, got %d", mismatchLineNumber)
+		t.Logf("Failed one word mismatch at the last line. Expected 4, got %d", mismatchLineNumber)
 		t.Fail()
 	}
 }
@@ -96,7 +96,7 @@ func testMultipleSingleCharMismatches(t *testing.T) {
 	mismatchLineNumber := FindLineMismatch(left, right)
 
 	if mismatchLineNumber != 3 {
-		t.Logf("Failed test four. Expected 3, got %d", mismatchLineNumber)
+		t.Logf("Failed multiple single char mismatches. Expected 3, got %d", mismatchLineNumber)
 		t.Fail()
 	}
 }
@@ -113,18 +113,18 @@ func testMultipleWordMismatches(t *testing.T) {
 	mismatchLineNumber := FindLineMismatch(left, right)
 
 	if mismatchLineNumber != 2 {
-		t.Logf("Failed test five. Expected 2, got %d", mismatchLineNumber)
+		t.Logf("Failed multiple word mismatches. Expected 2, got %d", mismatchLineNumber)
 		t.Fail()
 	}
 }
 
 func testMatchingStringsButOneHasMoreLines(t *testing.T) {
-  left := "These two\nstrings match char\nby char."
-  right := "These two\nstrings match char\nby char.\nBut one has\nmore lines."
-  // line       1             2               3      ^     4
+	left := "These two\nstrings match char\nby char."
+	right := "These two\nstrings match char\nby char.\nBut one has\nmore lines."
+	// line       1             2               3      ^     4
 	// mismatches here --------------------------------|
-  
-  if mismatchLineNumber != 4 {
+
+	if mismatchLineNumber != 4 {
 		t.Logf("When two stings match line by line but one is longer than the other the next line number of the longer string is the expected value. Expected 4, got %d", mismatchLineNumber)
 		t.Fail()
 	}
