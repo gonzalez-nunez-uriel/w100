@@ -1,19 +1,13 @@
 package linematch
 
 func FindLineMismatch(left string, right string) int {
-	/*linesA := strings.Split(A,"\n")
-	  linesB := strings.Split(B,"\n")
+	if left == right {
+		return -1
+	}
 
-	  maxIndexA := len(linesA)
-	  maxIndexB := len(linesB)
-
-	  index := 0
-	  var lineA string
-	  var lineB string
-	  for {
-	    if
-
-	  }*/
+	if left == "" || right == "" {
+		return 1
+	}
 
 	return -10
 }
