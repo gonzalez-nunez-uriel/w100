@@ -11,6 +11,7 @@ func TestFindLineMismatch(t *testing.T) {
 	testMultipleSingleCharMismatches(t)
 	testMultipleWordMismatches(t)
 	testSingleLineWithoutNewlineMismatchingWords(t)
+	testEgdeCase(t)
 }
 
 // In case both strings are identical, the result should be -1
@@ -143,6 +144,20 @@ func testSingleLineWithoutNewlineMismatchingWords(t *testing.T) {
 
 	if mismatchLineNumber != expectedValue {
 		t.Logf("Failed single lines without newlines with mismatching words. Expected %d, got %d", expectedValue, mismatchLineNumber)
+		t.Fail()
+	}
+}
+
+func testEgdeCase(t *testing.T) {
+	left := "\n"
+	right := "\n\n"
+
+	const expectedValue = 2
+
+	mismatchLineNumber := FindLineMismatch(left, right)
+
+	if mismatchLineNumber != expectedValue {
+		t.Logf("Failed edge case. Expected %d, got %d", expectedValue, mismatchLineNumber)
 		t.Fail()
 	}
 }
