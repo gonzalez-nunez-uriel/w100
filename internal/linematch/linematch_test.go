@@ -11,6 +11,8 @@ func TestFindLineMismatch(t *testing.T) {
 	testMultipleSingleCharMismatches(t)
 	testMultipleWordMismatches(t)
 	testSingleLineWithoutNewlineMismatchingWords(t)
+	testSameStringsButOneEndsWithNewlineChar(t)
+	testSameStringsButOneEndsWithMoreNewlineChars(t)
 	testEgdeCase(t)
 }
 
@@ -144,6 +146,36 @@ func testSingleLineWithoutNewlineMismatchingWords(t *testing.T) {
 
 	if mismatchLineNumber != expectedValue {
 		t.Logf("Failed single lines without newlines with mismatching words. Expected %d, got %d", expectedValue, mismatchLineNumber)
+		t.Fail()
+	}
+}
+
+func testSameStringsButOneEndsWithNewlineChar(t *testing.T) {
+
+	left := "first line\nsecond line\nfinal line\n"
+	right := "first line\nsecond line\nfinal line"
+
+	const expectedValue = -1
+
+	mismatchLineNumber := FindLineMismatch(left, right)
+
+	if mismatchLineNumber != expectedValue {
+		t.Logf("A single newline char difference at the end of the strings is not a mismatch. Expected %d, got %d", expectedValue, mismatchLineNumber)
+		t.Fail()
+	}
+}
+
+func testSameStringsButOneEndsWithMoreNewlineChars(t *testing.T) {
+
+	left := "first line\nsecond line\nfinal line\n\n\n"
+	right := "first line\nsecond line\nfinal line\n\n\n\n\n"
+
+	const expectedValue = -1
+
+	mismatchLineNumber := FindLineMismatch(left, right)
+
+	if mismatchLineNumber != expectedValue {
+		t.Logf("Newline chars at the end of the file are not a mismatch. Expected %d, got %d", expectedValue, mismatchLineNumber)
 		t.Fail()
 	}
 }
