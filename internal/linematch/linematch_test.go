@@ -10,6 +10,7 @@ func TestFindLineMismatch(t *testing.T) {
 	testOneWordMismatchAtLastLine(t)
 	testMultipleSingleCharMismatches(t)
 	testMultipleWordMismatches(t)
+	testSingleLineWithoutNewlineMismatchingWords(t)
 }
 
 // In case both strings are identical, the result should be -1
@@ -129,6 +130,19 @@ func testMatchingStringsButOneHasMoreLines(t *testing.T) {
 
 	if mismatchLineNumber != 4 {
 		t.Logf("When two stings match line by line but one is longer than the other the next line number of the longer string is the expected value. Expected 4, got %d", mismatchLineNumber)
+		t.Fail()
+	}
+}
+
+func testSingleLineWithoutNewlineMismatchingWords(t *testing.T) {
+	left := "match"
+	right := "mismatch"
+	const expectedValue = 1
+
+	mismatchLineNumber := FindLineMismatch(left, right)
+
+	if mismatchLineNumber != expectedValue {
+		t.Logf("Failed single lines without newlines with mismatching words. Expected %d, got %d", expectedValue, mismatchLineNumber)
 		t.Fail()
 	}
 }
