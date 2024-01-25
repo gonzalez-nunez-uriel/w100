@@ -22,6 +22,14 @@ func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) in
 	maxLeftIndex := len(leftLines) - 1
 	maxRightIndex := len(rightLines) - 1
 
+	if hasGhostString(left) {
+		maxLeftIndex -= 1
+	}
+
+	if hasGhostString(right) {
+		maxRightIndex -= 1
+	}
+
 	index := 0
 	lineNumber := 1
 	for {
@@ -40,6 +48,10 @@ func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) in
 			return lineNumber
 		}
 	}
+}
+
+func hasGhostString(input string) bool {
+	return input[len(input)-1] == "\n"
 }
 
 func splitStringIntoLines(input string) []string {
