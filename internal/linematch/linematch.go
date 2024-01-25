@@ -51,7 +51,9 @@ func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) in
 }
 
 func hasGhostString(input string) bool {
-	return input[len(input)-1] == "\n"
+	lastIndex := len(input) - 1
+	lastChar := input[lastIndex]
+	return lastChar == '\n'
 }
 
 func splitStringIntoLines(input string) []string {
