@@ -151,11 +151,13 @@ func testSingleLineWithoutNewlineMismatchingWords(t *testing.T) {
 }
 
 func testSameStringsButOneEndsWithNewlineChar(t *testing.T) {
+	// lines 1         2            3            4
+	left := "first line\nsecond line\nfinal line"
+	right := "first line\nsecond line\nfinal line\n"
+	//                                           ^
+	// mismatch here ----------------------------|
 
-	left := "first line\nsecond line\nfinal line\n"
-	right := "first line\nsecond line\nfinal line"
-
-	const expectedValue = -1
+	const expectedValue = 4
 
 	mismatchLineNumber := FindLineMismatch(left, right)
 
@@ -166,11 +168,13 @@ func testSameStringsButOneEndsWithNewlineChar(t *testing.T) {
 }
 
 func testSameStringsButOneEndsWithMoreNewlineChars(t *testing.T) {
-
+	// lines       1           2           3    4 5 6 7 8
 	left := "first line\nsecond line\nfinal line\n\n\n"
 	right := "first line\nsecond line\nfinal line\n\n\n\n\n"
+	//                                                 ^
+	// mismatch here ----------------------------------|
 
-	const expectedValue = -1
+	const expectedValue = 7
 
 	mismatchLineNumber := FindLineMismatch(left, right)
 
