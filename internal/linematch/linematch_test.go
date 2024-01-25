@@ -185,10 +185,15 @@ func testSameStringsButOneEndsWithMoreNewlineChars(t *testing.T) {
 }
 
 func testEgdeCase(t *testing.T) {
+	//lines 1  2
 	left := "\n"
+	//lines  1  2 3
 	right := "\n\n"
+	// If you hesitate, you can confirm it with a text editor.
+	// Press enter once and there are two lines
+	// Press entre two times and there are three lines
 
-	const expectedValue = 2
+	const expectedValue = 3
 
 	mismatchLineNumber := FindLineMismatch(left, right)
 
