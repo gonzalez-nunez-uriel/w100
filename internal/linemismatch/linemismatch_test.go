@@ -100,6 +100,6 @@ func TestFindLineMismatch(t *testing.T) {
 		})
 	}
 
-	percentFailed := float64(len(tests)) / float64(failCount) * 100.0
+	percentFailed := float64(failCount) / float64(len(tests)) * 100.0
 	t.Logf("\n\nTOTAL: %d FAILED: %d         PERCENT PASSED: %.1f%%         PERCENT FAILED: %.1f%%", len(tests), failCount, 100.0-percentFailed, percentFailed)
 }
