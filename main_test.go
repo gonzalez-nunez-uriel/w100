@@ -4,6 +4,7 @@ import (
 	"os"
 	"testing"
 
+	linematch "github.com/gonzalez-nunez-uriel/w100/internal/linemismatch"
 	"github.com/gonzalez-nunez-uriel/w100/internal/symbols"
 )
 
@@ -60,20 +61,20 @@ func validateTests(t *testing.T) {
 
 		validateTestCase(t, file.Name(), string(input), string(output), string(verification))
 	}
-
-	t.Fail()
 }
 
 func validateTestCase(t *testing.T, testCase string, input string, output string, verification string) {
+	t.Log("Validation")
+
 	if symbols.SymbolsOnly(input) != symbols.SymbolsOnly(output) {
 		t.Logf("Error in %s: input and output files do not match symbol-wise", testCase)
 		//findStowawayChar(t, input, output)
 		t.Fail()
 	}
 
-	if output != verification {
-		t.Logf("Error in %s: output and verification files do not match", testCase)
-		//findLineMismatch(t, output, verification)
+	thereIsMismatch, lineNumber := linematch.FindLineMismatch(output, verification)
+	if thereIsMismatch {
+		t.Logf("Error in %s: output and verification files do not match. Mismatch at line %d", testCase, lineNumber)
 		t.Fail()
 	}
 }
