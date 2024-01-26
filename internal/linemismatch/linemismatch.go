@@ -42,7 +42,7 @@ func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) (i
 		} else {
 			// One string is a subtring of the other
 			// The current line number is where the strings differ
-			return lineNumber, -10
+			return lineNumber, 1
 		}
 	}
 }
