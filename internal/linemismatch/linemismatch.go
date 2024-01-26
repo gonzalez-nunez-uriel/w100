@@ -6,19 +6,20 @@ package linematch
 
 import "strings"
 
-func FindLineMismatch(left string, right string) (bool, int) {
+func FindLineMismatch(left string, right string) (bool, int, int) {
 	if left == right {
-		return false, -1
+		return false, -1, -10
 	}
 
 	if left == "" || right == "" {
-		return true, 1
+		return true, 1, -10
 	}
 
-	return true, findLineMismatchOfTwoDifferentNonEmptyStrings(left, right)
+	lineNumber, columnNumber := findLineMismatchOfTwoDifferentNonEmptyStrings(left, right)
+	return true, lineNumber, columnNumber
 }
 
-func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) int {
+func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) (int, int) {
 
 	leftLines := splitStringIntoLines(left)
 	rightLines := splitStringIntoLines(right)
@@ -33,7 +34,7 @@ func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) in
 		if bothSlicesCanBeAccessed(index, maxLeftIndex, maxRightIndex) {
 
 			if linesDoNotMatch(index, leftLines, rightLines) {
-				return lineNumber
+				return lineNumber, -10
 			} else {
 				index += 1
 				lineNumber += 1
@@ -41,7 +42,7 @@ func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) in
 		} else {
 			// One string is a subtring of the other
 			// The current line number is where the strings differ
-			return lineNumber
+			return lineNumber, -10
 		}
 	}
 }
