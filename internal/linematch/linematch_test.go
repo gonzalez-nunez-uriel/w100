@@ -85,6 +85,16 @@ func TestFindLineMismatch(t *testing.T) {
 	testSameStringsButOneEndsWithNewlineChar(t)
 	testSameStringsButOneEndsWithMoreNewlineChars(t)
 	testEgdeCase(t)
+
+	for _, testCase := range tests {
+		t.Run(testCase.description, func(t *testing.T) {
+			thereIsAMismatch, mismatchLineNumber := FindLineMismatch(testCase.left, testCase.right)
+			if thereIsAMismatch != testCase.expectedBool || mismatchLineNumber != testCase.expectedLineNumber {
+				t.Logf("%sExpected (%t, %d), got (%t, %d)", testCase.description, testCase.expectedBool, testCase.expectedLineNumber, thereIsAMismatch, mismatchLineNumber)
+				t.Fail()
+			}
+		})
+	}
 }
 
 // In case both strings are identical, the result should be -1
