@@ -52,11 +52,13 @@ func simpleTest(t *testing.T) {
 	right := "These two strings\nhave @ mismatch\nin the middle line."
 	//                               ^
 	// mismatch here ----------------|
+	const expectedBool = true
+	const expectedLineNumber = 2
 
 	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if thereIsAMismatch && mismatchLineNumber != 2 {
-		t.Logf("Failed simple test case. Expected 2, got %d", mismatchLineNumber)
+	if thereIsAMismatch != expectedBool || mismatchLineNumber != expectedLineNumber {
+		t.Logf("Failed simple test case. Expected (%t, %d), got (%t, %d)", expectedBool, expectedLineNumber, thereIsAMismatch, mismatchLineNumber)
 		t.Fail()
 	}
 }
