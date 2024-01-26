@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/gonzalez-nunez-uriel/w100/internal/symbols"
 	"os"
 	"testing"
-	"strings"
+
+	"github.com/gonzalez-nunez-uriel/w100/internal/symbols"
 )
 
 /*
@@ -70,9 +70,9 @@ func validateTestCase(t *testing.T, testCase string, input string, output string
 		//findStowawayChar(t, input, output)
 		t.Fail()
 	}
-	
+
 	if output != verification {
-	  t.Logf("Error in %s: output and verification files do not match", testCase)
+		t.Logf("Error in %s: output and verification files do not match", testCase)
 		//findLineMismatch(t, output, verification)
 		t.Fail()
 	}
