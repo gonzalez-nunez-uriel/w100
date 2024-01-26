@@ -15,7 +15,7 @@ func FindLineMismatch(left string, right string) (bool, int) {
 		return true, 1
 	}
 
-	return false, findLineMismatchOfTwoDifferentNonEmptyStrings(left, right)
+	return true, findLineMismatchOfTwoDifferentNonEmptyStrings(left, right)
 }
 
 func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) int {

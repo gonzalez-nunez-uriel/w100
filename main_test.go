@@ -32,7 +32,6 @@ func validateTests(t *testing.T) {
 	}
 
 	for _, file := range testCases {
-		t.Log(file.Name())
 		// For more information on naming conventions read TODO: EXPLAIN TESTING NAMING CONVENTIONS AND ARCHITECTURE
 		inputFileName := "testdata/" + file.Name() + "/input.md"
 		outputFileName := "testdata/" + file.Name() + "/output.md"
@@ -64,7 +63,6 @@ func validateTests(t *testing.T) {
 }
 
 func validateTestCase(t *testing.T, testCase string, input string, output string, verification string) {
-	t.Log("Validation")
 
 	if symbols.SymbolsOnly(input) != symbols.SymbolsOnly(output) {
 		t.Logf("Error in %s: input and output files do not match symbol-wise", testCase)
