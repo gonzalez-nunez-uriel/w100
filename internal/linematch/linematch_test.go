@@ -20,11 +20,13 @@ func TestFindLineMismatch(t *testing.T) {
 func testIdenticalStrings(t *testing.T) {
 	left := "Th3se TWO 5tings @re 1dentical$*!\n\nThe #^% #$() result should\nbe negative 0ne.\n"
 	right := "Th3se TWO 5tings @re 1dentical$*!\n\nThe #^% #$() result should\nbe negative 0ne.\n"
+	const expectedBool = false
+	const expectedLineNumber = -1
 
 	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if !thereIsAMismatch && mismatchLineNumber != -1 {
-		t.Logf("For two identical strings the output should be -1, got %d", mismatchLineNumber)
+	if thereIsAMismatch != expectedBool || mismatchLineNumber != expectedLineNumber {
+		t.Logf("Two identical strings have no mismatched lines. Expected (%t, %d), got (%t, %d)", expectedBool, expectedLineNumber, thereIsAMismatch, mismatchLineNumber)
 		t.Fail()
 	}
 }
@@ -33,11 +35,13 @@ func testIdenticalStrings(t *testing.T) {
 func testOneStringIsEmpty(t *testing.T) {
 	left := "0ne of th3se %trings is empty.\n\n The result should BE one."
 	right := ""
+	const expectedBool = true
+	const expectedLineNumber = 1
 
 	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if thereIsAMismatch && mismatchLineNumber != 1 {
-		t.Logf("If one of the strings is empty the result should be 1, got %d", mismatchLineNumber)
+	if thereIsAMismatch != expectedBool || mismatchLineNumber != expectedLineNumber {
+		t.Logf("If one of the strings is empty the two strings differ at line 1. Expected (%t, %d), got (%t, %d)", expectedBool, expectedLineNumber, thereIsAMismatch, mismatchLineNumber)
 		t.Fail()
 	}
 }
