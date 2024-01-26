@@ -8,11 +8,11 @@ import "strings"
 
 func FindLineMismatch(left string, right string) (bool, int, int) {
 	if left == right {
-		return false, -1, -10
+		return false, -1, -1
 	}
 
 	if left == "" || right == "" {
-		return true, 1, -10
+		return true, 1, 1
 	}
 
 	lineNumber, columnNumber := findLineMismatchOfTwoDifferentNonEmptyStrings(left, right)
