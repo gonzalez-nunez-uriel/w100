@@ -14,7 +14,7 @@ func FindLineMismatch(left string, right string) int {
 	return findLineMismatchOfTwoDifferentNonEmptyStrings(left, right)
 }
 
-func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) int {
+func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) (bool, int) {
 
 	leftLines := splitStringIntoLines(left)
 	rightLines := splitStringIntoLines(right)
@@ -29,7 +29,7 @@ func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) in
 		if bothSlicesCanBeAccessed(index, maxLeftIndex, maxRightIndex) {
 
 			if linesDoNotMatch(index, leftLines, rightLines) {
-				return lineNumber
+				return nil, lineNumber
 			} else {
 				index += 1
 				lineNumber += 1
@@ -37,7 +37,7 @@ func findLineMismatchOfTwoDifferentNonEmptyStrings(left string, right string) in
 		} else {
 			// One string is a subtring of the other
 			// The current line number is where the strings differ
-			return lineNumber
+			return nil, lineNumber
 		}
 	}
 }

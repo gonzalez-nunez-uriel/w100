@@ -21,9 +21,9 @@ func testIdenticalStrings(t *testing.T) {
 	left := "Th3se TWO 5tings @re 1dentical$*!\n\nThe #^% #$() result should\nbe negative 0ne.\n"
 	right := "Th3se TWO 5tings @re 1dentical$*!\n\nThe #^% #$() result should\nbe negative 0ne.\n"
 
-	mismatchLineNumber := FindLineMismatch(left, right)
+	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if mismatchLineNumber != -1 {
+	if !thereIsAMismatch && mismatchLineNumber != -1 {
 		t.Logf("For two identical strings the output should be -1, got %d", mismatchLineNumber)
 		t.Fail()
 	}
@@ -34,9 +34,9 @@ func testOneStringIsEmpty(t *testing.T) {
 	left := "0ne of th3se %trings is empty.\n\n The result should BE one."
 	right := ""
 
-	mismatchLineNumber := FindLineMismatch(left, right)
+	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if mismatchLineNumber != 1 {
+	if thereIsAMismatch && mismatchLineNumber != 1 {
 		t.Logf("If one of the strings is empty the result should be 1, got %d", mismatchLineNumber)
 		t.Fail()
 	}
@@ -49,9 +49,9 @@ func simpleTest(t *testing.T) {
 	//                               ^
 	// mismatch here ----------------|
 
-	mismatchLineNumber := FindLineMismatch(left, right)
+	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if mismatchLineNumber != 2 {
+	if thereIsAMismatch && mismatchLineNumber != 2 {
 		t.Logf("Failed simple test case. Expected 2, got %d", mismatchLineNumber)
 		t.Fail()
 	}
@@ -64,9 +64,9 @@ func testOneCharMismatchAtFirstLine(t *testing.T) {
 	//                  ^
 	// mismatch here ---|
 
-	mismatchLineNumber := FindLineMismatch(left, right)
+	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if mismatchLineNumber != 1 {
+	if thereIsAMismatch && mismatchLineNumber != 1 {
 		t.Logf("Failed one char mismatch in the first line. Expected 1, got %d", mismatchLineNumber)
 		t.Fail()
 	}
@@ -81,9 +81,9 @@ func testOneWordMismatchAtLastLine(t *testing.T) {
 	//                                                                     ^
 	// mismatch here ------------------------------------------------------|
 
-	mismatchLineNumber := FindLineMismatch(left, right)
+	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if mismatchLineNumber != expectedValue {
+	if thereIsAMismatch && mismatchLineNumber != expectedValue {
 		t.Logf("Failed one word mismatch at the last line. Expected %d, got %d", expectedValue, mismatchLineNumber)
 		t.Fail()
 	}
@@ -98,9 +98,9 @@ func testMultipleSingleCharMismatches(t *testing.T) {
 	//                                        ^                           ^
 	// mismatches here -----------------------|---------------------------|
 
-	mismatchLineNumber := FindLineMismatch(left, right)
+	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if mismatchLineNumber != 3 {
+	if thereIsAMismatch && mismatchLineNumber != 3 {
 		t.Logf("Failed multiple single char mismatches. Expected 3, got %d", mismatchLineNumber)
 		t.Fail()
 	}
@@ -115,9 +115,9 @@ func testMultipleWordMismatches(t *testing.T) {
 	//                            ^    ^
 	// mismatches here -----------|----|
 
-	mismatchLineNumber := FindLineMismatch(left, right)
+	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if mismatchLineNumber != 2 {
+	if thereIsAMismatch && mismatchLineNumber != 2 {
 		t.Logf("Failed multiple word mismatches. Expected 2, got %d", mismatchLineNumber)
 		t.Fail()
 	}
@@ -129,9 +129,9 @@ func testMatchingStringsButOneHasMoreLines(t *testing.T) {
 	// line       1             2               3      ^     4
 	// mismatches here --------------------------------|
 
-	mismatchLineNumber := FindLineMismatch(left, right)
+	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if mismatchLineNumber != 4 {
+	if thereIsAMismatch && mismatchLineNumber != 4 {
 		t.Logf("When two stings match line by line but one is longer than the other the next line number of the longer string is the expected value. Expected 4, got %d", mismatchLineNumber)
 		t.Fail()
 	}
@@ -142,9 +142,9 @@ func testSingleLineWithoutNewlineMismatchingWords(t *testing.T) {
 	right := "mismatch"
 	const expectedValue = 1
 
-	mismatchLineNumber := FindLineMismatch(left, right)
+	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if mismatchLineNumber != expectedValue {
+	if thereIsAMismatch && mismatchLineNumber != expectedValue {
 		t.Logf("Failed single lines without newlines with mismatching words. Expected %d, got %d", expectedValue, mismatchLineNumber)
 		t.Fail()
 	}
@@ -159,9 +159,9 @@ func testSameStringsButOneEndsWithNewlineChar(t *testing.T) {
 
 	const expectedValue = 4
 
-	mismatchLineNumber := FindLineMismatch(left, right)
+	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if mismatchLineNumber != expectedValue {
+	if thereIsAMismatch && mismatchLineNumber != expectedValue {
 		t.Logf("A single newline char difference at the end of the strings is not a mismatch. Expected %d, got %d", expectedValue, mismatchLineNumber)
 		t.Fail()
 	}
@@ -176,9 +176,9 @@ func testSameStringsButOneEndsWithMoreNewlineChars(t *testing.T) {
 
 	const expectedValue = 7
 
-	mismatchLineNumber := FindLineMismatch(left, right)
+	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if mismatchLineNumber != expectedValue {
+	if thereIsAMismatch && mismatchLineNumber != expectedValue {
 		t.Logf("Newline chars at the end of the file are not a mismatch. Expected %d, got %d", expectedValue, mismatchLineNumber)
 		t.Fail()
 	}
@@ -195,9 +195,9 @@ func testEgdeCase(t *testing.T) {
 
 	const expectedValue = 3
 
-	mismatchLineNumber := FindLineMismatch(left, right)
+	thereIsAMismatch, mismatchLineNumber := FindLineMismatch(left, right)
 
-	if mismatchLineNumber != expectedValue {
+	if thereIsAMismatch && mismatchLineNumber != expectedValue {
 		t.Logf("Failed edge case. Expected %d, got %d", expectedValue, mismatchLineNumber)
 		t.Fail()
 	}
