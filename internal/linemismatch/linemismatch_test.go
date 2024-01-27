@@ -188,6 +188,15 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 	leftWords = append(leftWords, createWord(runeSet))
 	rightWords = append(rightWords, createWord(runeSet))
 
+	// only a single mismatch is need
+	// it might be a good idea to guarantee that there is only one difference per example
+	// for debugging purposes
+	for i := 0; i < wordCountAfterMismatch; i++ {
+		newWord := createWord(runeSet)
+		leftWords = append(leftWords, newWord)
+		rightWords = append(rightWords, newWord)
+	}
+
 }
 
 func createWord(runeSet []rune) string {
