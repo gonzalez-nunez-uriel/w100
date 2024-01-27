@@ -185,22 +185,18 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 		rightWords = append(rightWords, newWord)
 	}
 
-	leftWords = append(leftWords, createWord())
+	leftWords = append(leftWords, createWord(runeSet))
+	rightWords = append(rightWords, createWord(runeSet))
 
 }
 
 func createWord(runeSet []rune) string {
 
-	const wordSize = uint(rand.Intn(10) + 1)
-	// This is not possible because the size of an array must be a constant expresion
-	// That is, it must be known at compile time(right?)
-	// C can handle something like this. I think this is a weird design desition
-	// adding const does not help
-	var runes [wordSize]rune
+	wordSize := rand.Intn(10) + 1
+	var runes []rune
 	for i := 0; i < wordSize; i++ {
-		// thanks https://www.tutorialspoint.com/how-to-append-a-slice-in-golang#:~:text=Syntax%20for%20Appending%20a%20Slice%20in%20Golang&text=The%20append()%20function%20in,a%20new%20array%20is%20allocated.
 		newRune := runeSet[rand.Intn(len(runeSet))]
-		runes[i] = newRune
+		runes = append(runes, newRune)
 	}
 
 	// thanks https://yourbasic.org/golang/convert-string-to-rune-slice/
