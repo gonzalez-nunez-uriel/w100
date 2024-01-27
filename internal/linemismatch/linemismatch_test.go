@@ -180,21 +180,21 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 	var leftWords []string
 	var rightWords []string
 	for i := 0; i < mismatchAtThisWordCount-1; i++ {
+		wordSize := rand.Intn(10) + 1
 		newWord := createWord(runeSet, wordSize)
 		leftWords = append(leftWords, newWord)
 		rightWords = append(rightWords, newWord)
 	}
 
-	leftWords = append(leftWords, new)
+	leftWords = append(leftWords, createWord())
 
 }
 
-func createWord(runeSet []rune) string {
+func createWord(runeSet []rune, size int) string {
 	// A three component loop
 	// thanks https://yourbasic.org/golang/for-loop/
-	wordSize := rand.Intn(10) + 1
-	var runes [wordSize]rune
-	for i := 0; i < wordSize; i++ {
+	var runes []rune
+	for i := 0; i < size; i++ {
 		// thanks https://www.tutorialspoint.com/how-to-append-a-slice-in-golang#:~:text=Syntax%20for%20Appending%20a%20Slice%20in%20Golang&text=The%20append()%20function%20in,a%20new%20array%20is%20allocated.
 		newRune := runeSet[rand.Intn(len(runeSet))]
 		runes = append(runes, newRune)
