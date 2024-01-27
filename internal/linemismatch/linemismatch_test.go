@@ -1,6 +1,9 @@
 package linematch
 
-import "testing"
+import (
+	"math/rand"
+	"testing"
+)
 
 func TestFindLineMismatch(t *testing.T) {
 
@@ -168,15 +171,36 @@ func TestFindColumnMismatch(t *testing.T) {
 }
 
 func findColumnMismatchPropertyCheck(t *testing.T) {
-	// generate two random strings
-	// decide how long each string is going to be
-	// populate the strings with chars
-	// Idea taken from https://programming.guide/go/generate-random-character.html
-	// Having whitespace repeated serveral times means it is moer likely to happen
-	// This can be used to put at check the length of words
-	runeSet := []rune("abcdefghijklmnopqrstuvwsyz 1234567890 !@@#$%^&*() .,")
+	// Idea from https://programming.guide/go/generate-random-character.html
+	runeSet := []rune("abcdefghijklmnopqrstuvwsyz1234567890!@@#$%^&*().,")
 
-	// find the mismatch column
+	mismatchAtThisWordCount := rand.Intn(10) + 1
+	wordCountAfterMismatch := rand.Intn(10)
 
-	// check that the property is met
+	var leftWords []string
+	var rightWords []string
+	for i := 0; i < mismatchAtThisWordCount-1; i++ {
+		newWord := createWord(runeSet, wordSize)
+		leftWords = append(leftWords, newWord)
+		rightWords = append(rightWords, newWord)
+	}
+
+	leftWords = append(leftWords, new)
+
+}
+
+func createWord(runeSet []rune) string {
+	// A three component loop
+	// thanks https://yourbasic.org/golang/for-loop/
+	wordSize := rand.Intn(10) + 1
+	var runes [wordSize]rune
+	for i := 0; i < wordSize; i++ {
+		// thanks https://www.tutorialspoint.com/how-to-append-a-slice-in-golang#:~:text=Syntax%20for%20Appending%20a%20Slice%20in%20Golang&text=The%20append()%20function%20in,a%20new%20array%20is%20allocated.
+		newRune := runeSet[rand.Intn(len(runeSet))]
+		runes = append(runes, newRune)
+	}
+
+	// thanks https://yourbasic.org/golang/convert-string-to-rune-slice/
+	// there is a chance for optimization
+	return string(runes)
 }
