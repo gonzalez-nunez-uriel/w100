@@ -180,8 +180,7 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 	var leftWords []string
 	var rightWords []string
 	for i := 0; i < mismatchAtThisWordCount-1; i++ {
-		wordSize := rand.Intn(10) + 1
-		newWord := createWord(runeSet, wordSize)
+		newWord := createWord(runeSet)
 		leftWords = append(leftWords, newWord)
 		rightWords = append(rightWords, newWord)
 	}
@@ -190,14 +189,18 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 
 }
 
-func createWord(runeSet []rune, size int) string {
-	// A three component loop
-	// thanks https://yourbasic.org/golang/for-loop/
-	var runes []rune
-	for i := 0; i < size; i++ {
+func createWord(runeSet []rune) string {
+
+	const wordSize = uint(rand.Intn(10) + 1)
+	// This is not possible because the size of an array must be a constant expresion
+	// That is, it must be known at compile time(right?)
+	// C can handle something like this. I think this is a weird design desition
+	// adding const does not help
+	var runes [wordSize]rune
+	for i := 0; i < wordSize; i++ {
 		// thanks https://www.tutorialspoint.com/how-to-append-a-slice-in-golang#:~:text=Syntax%20for%20Appending%20a%20Slice%20in%20Golang&text=The%20append()%20function%20in,a%20new%20array%20is%20allocated.
 		newRune := runeSet[rand.Intn(len(runeSet))]
-		runes = append(runes, newRune)
+		runes[i] = newRune
 	}
 
 	// thanks https://yourbasic.org/golang/convert-string-to-rune-slice/
