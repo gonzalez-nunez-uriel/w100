@@ -101,7 +101,7 @@ func TestFindLineMismatch(t *testing.T) {
 	}
 
 	percentFailed := float64(failCount) / float64(len(tests)) * 100.0
-	t.Logf("\n\nTOTAL: %d FAILED: %d         PERCENT PASSED: %.1f%%         PERCENT FAILED: %.1f%%", len(tests), failCount, 100.0-percentFailed, percentFailed)
+	t.Logf("\n\nTOTAL: %d FAILED: %d         PERCENT PASSED: %.1f%%         PERCENT FAILED: %.1f%%\n\n", len(tests), failCount, 100.0-percentFailed, percentFailed)
 }
 
 func TestFindColumnMismatch(t *testing.T) {
@@ -150,4 +150,19 @@ func TestFindColumnMismatch(t *testing.T) {
 			"same sentenc& mismatch",
 			14},
 	}
+
+	failCount := 0
+	for _, testCase := range tests {
+		t.Run(testCase.description, func(t *testing.T) {
+			mismatchColumnNumber := FindColumnMismatch(testCase.left, testCase.right)
+			if mismatchColumnNumber != testCase.expectedColumnNumber {
+				t.Logf("%sExpected %d, got %d", testCase.description, testCase.expectedColumnNumber, mismatchColumnNumber)
+				failCount += 1
+				t.Fail()
+			}
+		})
+	}
+
+	percentFailed := float64(failCount) / float64(len(tests)) * 100.0
+	t.Logf("\n\nTOTAL: %d FAILED: %d         PERCENT PASSED: %.1f%%         PERCENT FAILED: %.1f%%\n\n", len(tests), failCount, 100.0-percentFailed, percentFailed)
 }
