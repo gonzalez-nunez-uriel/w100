@@ -181,6 +181,14 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 
 	mismatchColumnNumber := FindColumnMismatch(left, right)
 
+	if mismatchColumnNumber <= 0 {
+		// this is enough information to replicate the error
+		t.Log("The mismatch column must be a number greater than zero.")
+		t.Logf("left:\n%s\n\n", left)
+		t.Logf("right:\n%s\n\n", right)
+		t.Logf("Reported mismatch: %d\n\n", mismatchColumnNumber)
+	}
+
 	leftBeforeMismatch := left[0:mismatchColumnNumber]
 	rightBeforeMismatch := right[0:mismatchColumnNumber]
 
@@ -212,9 +220,21 @@ func createStringExamples(runeSet []rune) (string, string) {
 
 	// chances are that these words are going to differ
 	// in the first few runes. Is that an issue?
-	leftWords = append(leftWords, createWord(runeSet))
-	rightWords = append(rightWords, createWord(runeSet))
+	// It must be guaranteed that both strings have a difference
+	var mismatchLeftWord string
+	var mismatchRightWord string
+	for {
 
+		mismatchLeftWord = createWord(runeSet)
+		mismatchRightWord = createWord(runeSet)
+
+		if mismatchLeftWord != mismatchRightWord {
+			break
+		}
+	}
+
+	leftWords = append(leftWords, mismatchLeftWord)
+	rightWords = append(rightWords, mismatchRightWord)
 	// only a single mismatch is need
 	// it might be a good idea to guarantee that there is only one difference per example
 	// for debugging purposes
