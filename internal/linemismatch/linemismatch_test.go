@@ -187,6 +187,7 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 		t.Logf("left:\n%s\n\n", left)
 		t.Logf("right:\n%s\n\n", right)
 		t.Logf("Reported mismatch: %d\n\n", mismatchColumnNumber)
+		t.FailNow()
 	}
 
 	leftBeforeMismatch := left[0:mismatchColumnNumber]
@@ -198,6 +199,7 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 		t.Logf("left:\n%s\n\n", left)
 		t.Logf("right:\n%s\n\n", right)
 		t.Logf("Reported mismatch: %d\n\n", mismatchColumnNumber)
+		t.FailNow()
 	}
 
 }
