@@ -166,3 +166,11 @@ func TestFindColumnMismatch(t *testing.T) {
 	percentFailed := float64(failCount) / float64(len(tests)) * 100.0
 	t.Logf("\n\nTOTAL: %d FAILED: %d         PERCENT PASSED: %.1f%%         PERCENT FAILED: %.1f%%\n\n", len(tests), failCount, 100.0-percentFailed, percentFailed)
 }
+
+func findColumnMismatchPropertyCheck(t *testing.T) {
+	// generate two random strings
+
+	// find the mismatch column
+
+	// check that the property is met
+}
