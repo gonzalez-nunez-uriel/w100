@@ -58,3 +58,7 @@ func bothSlicesCanBeAccessed(index int, maxLeftIndex int, maxRightIndex int) boo
 func linesDoNotMatch(index int, leftLines []string, rightLines []string) bool {
 	return leftLines[index] != rightLines[index]
 }
+
+func FindColumnMismatch(left string, right string) int {
+	return -10
+}
