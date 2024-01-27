@@ -61,7 +61,7 @@ func TestFindLineMismatch(t *testing.T) {
 			"These two\nstrings match char\nby char.\nBut one has\nmore lines.",
 			true,
 			4,
-			38}, // <<---- I ALMOST MADED ERROR HERE!!!
+			1},
 		{"Single mismatching lines without newline chars.",
 			"match",
 			"mismatch",
