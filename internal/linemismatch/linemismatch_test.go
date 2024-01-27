@@ -2,6 +2,7 @@ package linematch
 
 import (
 	"math/rand"
+	"strings"
 	"testing"
 )
 
@@ -174,6 +175,11 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 	// Idea from https://programming.guide/go/generate-random-character.html
 	runeSet := []rune("abcdefghijklmnopqrstuvwsyz1234567890!@@#$%^&*().,")
 
+	left, right := createStringExamples(runeSet)
+
+}
+
+func createStringExamples(runeSet []rune) (string, string) {
 	mismatchAtThisWordCount := rand.Intn(10) + 1
 	wordCountAfterMismatch := rand.Intn(10)
 
@@ -197,6 +203,9 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 		rightWords = append(rightWords, newWord)
 	}
 
+	left := strings.Join(leftWords, " ")
+	right := strings.Join(rightWords, " ")
+	return left, right
 }
 
 func createWord(runeSet []rune) string {
