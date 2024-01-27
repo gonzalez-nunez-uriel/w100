@@ -171,6 +171,10 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 	// generate two random strings
 	// decide how long each string is going to be
 	// populate the strings with chars
+	// Idea taken from https://programming.guide/go/generate-random-character.html
+	// Having whitespace repeated serveral times means it is moer likely to happen
+	// This can be used to put at check the length of words
+	runeSet := []rune("abcdefghijklmnopqrstuvwsyz 1234567890 !@@#$%^&*() .,")
 
 	// find the mismatch column
 
