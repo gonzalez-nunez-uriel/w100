@@ -117,6 +117,9 @@ func TestFindColumnMismatch(t *testing.T) {
 	}
 
 	var tests = []testCase{
+		// Should the case of both columns being equal be considered?
+		// The function calling this one already makes that check
+		// This function is called once it is known that two lines are different
 		{"One word difference at the beggining",
 			"match",
 			"mismatch",
@@ -153,6 +156,26 @@ func TestFindColumnMismatch(t *testing.T) {
 			"same sentenc&",
 			"same sentenc& mismatch",
 			14},
+		{"If one of the strings is empty, they differ at the first column",
+			"mismatch",
+			"",
+			1},
+		{"If one of the strings is empty, they differ at the first column",
+			"",
+			"mismatch",
+			1},
+		{"The strings can have many whitespaces in the beggining",
+			"   mismatch",
+			"   match",
+			5},
+		{"The strings can have many whitespaces in the beggining and differ by a whitespace",
+			"   mismatch",
+			"    match",
+			4},
+		{"The strings can have many whitespaces at the end and differ by a whitespace",
+			"match  ",
+			"match   ",
+			8},
 	}
 
 	failCount := 0
