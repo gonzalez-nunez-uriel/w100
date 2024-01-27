@@ -169,6 +169,8 @@ func TestFindColumnMismatch(t *testing.T) {
 
 	percentFailed := float64(failCount) / float64(len(tests)) * 100.0
 	t.Logf("\n\nTOTAL: %d FAILED: %d         PERCENT PASSED: %.1f%%         PERCENT FAILED: %.1f%%\n\n", len(tests), failCount, 100.0-percentFailed, percentFailed)
+
+	findColumnMismatchPropertyCheck(t)
 }
 
 func findColumnMismatchPropertyCheck(t *testing.T) {
@@ -182,6 +184,18 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 	leftBeforeMismatch := left[0:mismatchColumnNumber]
 	rightBeforeMismatch := right[0:mismatchColumnNumber]
 
+	if stringsBeforeMismatchAreNotEqual(leftBeforeMismatch, rightBeforeMismatch) {
+		// this is enough information to replicate the error
+		t.Log("Strings before reported mismatch should be equal.")
+		t.Logf("left:\n%s\n\n", left)
+		t.Logf("right:\n%s\n\n", right)
+		t.Logf("Reported mismatch: %d\n\n", mismatchColumnNumber)
+	}
+
+}
+
+func stringsBeforeMismatchAreNotEqual(leftBeforeMismatch string, rightBeforeMismatch string) bool {
+	return leftBeforeMismatch != rightBeforeMismatch
 }
 
 func createStringExamples(runeSet []rune) (string, string) {
