@@ -169,6 +169,8 @@ func TestFindColumnMismatch(t *testing.T) {
 
 func findColumnMismatchPropertyCheck(t *testing.T) {
 	// generate two random strings
+	// decide how long each string is going to be
+	// populate the strings with chars
 
 	// find the mismatch column
 
