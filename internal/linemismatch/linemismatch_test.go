@@ -177,6 +177,11 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 
 	left, right := createStringExamples(runeSet)
 
+	mismatchColumnNumber := FindColumnMismatch(left, right)
+
+	leftBeforeMismatch := left[0:mismatchColumnNumber]
+	rightBeforeMismatch := right[0:mismatchColumnNumber]
+
 }
 
 func createStringExamples(runeSet []rune) (string, string) {
@@ -191,6 +196,8 @@ func createStringExamples(runeSet []rune) (string, string) {
 		rightWords = append(rightWords, newWord)
 	}
 
+	// chances are that these words are going to differ
+	// in the first few runes. Is that an issue?
 	leftWords = append(leftWords, createWord(runeSet))
 	rightWords = append(rightWords, createWord(runeSet))
 
@@ -203,6 +210,7 @@ func createStringExamples(runeSet []rune) (string, string) {
 		rightWords = append(rightWords, newWord)
 	}
 
+	// would the absence of whitespace in the beggining and the end be an issue?
 	left := strings.Join(leftWords, " ")
 	right := strings.Join(rightWords, " ")
 	return left, right
