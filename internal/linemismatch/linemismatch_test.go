@@ -1,9 +1,9 @@
 package linematch
 
 import (
-	"math/rand"
-	"strings"
 	"testing"
+
+	"github.com/gonzalez-nunez-uriel/w100/internal/generators"
 )
 
 func TestFindLineMismatch(t *testing.T) {
@@ -203,7 +203,7 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 	// Idea from https://programming.guide/go/generate-random-character.html
 	runeSet := []rune("abcdefghijklmnopqrstuvwsyz1234567890!@@#$%^&*().,")
 
-	left, right := createStringExamples(runeSet)
+	left, right := generators.CreateStringExamples(runeSet)
 
 	mismatchColumnNumber := FindColumnMismatch(left, right)
 
@@ -232,62 +232,4 @@ func findColumnMismatchPropertyCheck(t *testing.T) {
 
 func stringsBeforeMismatchAreNotEqual(leftBeforeMismatch string, rightBeforeMismatch string) bool {
 	return leftBeforeMismatch != rightBeforeMismatch
-}
-
-func createStringExamples(runeSet []rune) (string, string) {
-	mismatchAtThisWordCount := rand.Intn(10) + 1
-	wordCountAfterMismatch := rand.Intn(10)
-
-	var leftWords []string
-	var rightWords []string
-	for i := 0; i < mismatchAtThisWordCount-1; i++ {
-		newWord := createWord(runeSet)
-		leftWords = append(leftWords, newWord)
-		rightWords = append(rightWords, newWord)
-	}
-
-	// chances are that these words are going to differ
-	// in the first few runes. Is that an issue?
-	// It must be guaranteed that both strings have a difference
-	var mismatchLeftWord string
-	var mismatchRightWord string
-	for {
-
-		mismatchLeftWord = createWord(runeSet)
-		mismatchRightWord = createWord(runeSet)
-
-		if mismatchLeftWord != mismatchRightWord {
-			break
-		}
-	}
-
-	leftWords = append(leftWords, mismatchLeftWord)
-	rightWords = append(rightWords, mismatchRightWord)
-	// only a single mismatch is need
-	// it might be a good idea to guarantee that there is only one difference per example
-	// for debugging purposes
-	for i := 0; i < wordCountAfterMismatch; i++ {
-		newWord := createWord(runeSet)
-		leftWords = append(leftWords, newWord)
-		rightWords = append(rightWords, newWord)
-	}
-
-	// would the absence of whitespace in the beggining and the end be an issue?
-	left := strings.Join(leftWords, " ")
-	right := strings.Join(rightWords, " ")
-	return left, right
-}
-
-func createWord(runeSet []rune) string {
-
-	wordSize := rand.Intn(10) + 1
-	var runes []rune
-	for i := 0; i < wordSize; i++ {
-		newRune := runeSet[rand.Intn(len(runeSet))]
-		runes = append(runes, newRune)
-	}
-
-	// thanks https://yourbasic.org/golang/convert-string-to-rune-slice/
-	// there is a chance for optimization
-	return string(runes)
 }
