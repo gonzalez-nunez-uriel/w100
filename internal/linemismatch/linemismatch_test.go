@@ -193,11 +193,8 @@ func TestFindColumnMismatch(t *testing.T) {
 	percentFailed := float64(failCount) / float64(len(tests)) * 100.0
 	t.Logf("\n\nTOTAL: %d FAILED: %d         PERCENT PASSED: %.1f%%         PERCENT FAILED: %.1f%%\n\n", len(tests), failCount, 100.0-percentFailed, percentFailed)
 
-	findColumnMismatchPropertyCheck(t)
-	findColumnMismatchPropertyCheck(t)
-	findColumnMismatchPropertyCheck(t)
-	findColumnMismatchPropertyCheck(t)
-	findColumnMismatchPropertyCheck(t)
+	t.Run("Property-based test", findColumnMismatchPropertyCheck)
+	t.Run("Property-based test", findColumnMismatchPropertyCheck)
 }
 
 func findColumnMismatchPropertyCheck(t *testing.T) {
