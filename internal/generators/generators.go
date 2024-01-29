@@ -28,14 +28,16 @@ import (
 	"strings"
 )
 
-func CreateStringExamples(runeSet []rune) (string, string) {
+var runeSet = []rune("abcdefghijklmnopqrstuvwsyz1234567890!@#$%^&*().,")
+
+func CreateStringExamples() (string, string) {
 	mismatchAtThisWordCount := rand.Intn(10) + 1
 	wordCountAfterMismatch := rand.Intn(10)
 
 	var leftWords []string
 	var rightWords []string
 	for i := 0; i < mismatchAtThisWordCount-1; i++ {
-		newWord := createWord(runeSet)
+		newWord := createWord()
 		leftWords = append(leftWords, newWord)
 		rightWords = append(rightWords, newWord)
 	}
@@ -47,8 +49,8 @@ func CreateStringExamples(runeSet []rune) (string, string) {
 	var mismatchRightWord string
 	for {
 
-		mismatchLeftWord = createWord(runeSet)
-		mismatchRightWord = createWord(runeSet)
+		mismatchLeftWord = createWord()
+		mismatchRightWord = createWord()
 
 		if mismatchLeftWord != mismatchRightWord {
 			break
@@ -61,7 +63,7 @@ func CreateStringExamples(runeSet []rune) (string, string) {
 	// it might be a good idea to guarantee that there is only one difference per example
 	// for debugging purposes
 	for i := 0; i < wordCountAfterMismatch; i++ {
-		newWord := createWord(runeSet)
+		newWord := createWord()
 		leftWords = append(leftWords, newWord)
 		rightWords = append(rightWords, newWord)
 	}
@@ -72,7 +74,7 @@ func CreateStringExamples(runeSet []rune) (string, string) {
 	return left, right
 }
 
-func createWord(runeSet []rune) string {
+func createWord() string {
 
 	wordSize := rand.Intn(10) + 1
 	var runes []rune

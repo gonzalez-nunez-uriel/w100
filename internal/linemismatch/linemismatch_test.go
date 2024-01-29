@@ -223,9 +223,8 @@ func TestFindColumnMismatch(t *testing.T) {
 
 func findColumnMismatchPropertyCheck(t *testing.T) {
 	// Idea from https://programming.guide/go/generate-random-character.html
-	runeSet := []rune("abcdefghijklmnopqrstuvwsyz1234567890!@@#$%^&*().,")
 
-	left, right := generators.CreateStringExamples(runeSet)
+	left, right := generators.CreateStringExamples()
 
 	mismatchColumnNumber := FindColumnMismatch(left, right)
 
