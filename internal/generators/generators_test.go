@@ -20,5 +20,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-// Some comment
 package generators
+
+import "testing"
+
+const runeSet = [...]rune{'a'} //("abcdefghijklmnopqrstuvwsyz1234567890!@#$%^&*().,")
+
+// The function CreteStringExamples generates
+// a string with the following properties:
+// 1) there are no leading nor trailing whitespaces
+// 2)
+func TestCreateStringExamples(t *testing.T) {
+	left, right := CreateStringExamples()
+}
