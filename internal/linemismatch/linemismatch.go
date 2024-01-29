@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
-// # Utility functions to find differences between strings on a line-to-line basis
+// Utility functions to find differences between strings on a line-to-line basis.
 //
 // This package contains functions to find differences between strings. It will be used by the tests of w100
 // to guarantee that test data is valid.
