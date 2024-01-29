@@ -22,9 +22,10 @@
 
 package generators
 
-import "testing"
-
-const runeSet = [...]rune{'a'} //("abcdefghijklmnopqrstuvwsyz1234567890!@#$%^&*().,")
+import (
+	"strings"
+	"testing"
+)
 
 // The function CreteStringExamples generates
 // a string with the following properties:
@@ -32,4 +33,11 @@ const runeSet = [...]rune{'a'} //("abcdefghijklmnopqrstuvwsyz1234567890!@#$%^&*(
 // 2)
 func TestCreateStringExamples(t *testing.T) {
 	left, right := CreateStringExamples()
+	
+	leftLines := strings.Split(left, " ")
+	rightLines := strings.Split(right, " ")
+
+	mismatchCount := 0
+
+	for ...
 }

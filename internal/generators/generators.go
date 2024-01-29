@@ -31,6 +31,8 @@ import (
 var runeSetGLB = []rune("abcdefghijklmnopqrstuvwsyz1234567890!@#$%^&*().,")
 
 func CreateStringExamples() (string, string) {
+
+	// the fact that both strings have the same size is an issue
 	mismatchAtThisWordCount := rand.Intn(10) + 1
 	wordCountAfterMismatch := rand.Intn(10)
 
