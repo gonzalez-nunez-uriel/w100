@@ -28,7 +28,7 @@ import (
 	"strings"
 )
 
-var runeSet = []rune("abcdefghijklmnopqrstuvwsyz1234567890!@#$%^&*().,")
+var runeSetGLB = []rune("abcdefghijklmnopqrstuvwsyz1234567890!@#$%^&*().,")
 
 func CreateStringExamples() (string, string) {
 	mismatchAtThisWordCount := rand.Intn(10) + 1
@@ -79,7 +79,7 @@ func createWord() string {
 	wordSize := rand.Intn(10) + 1
 	var runes []rune
 	for i := 0; i < wordSize; i++ {
-		newRune := runeSet[rand.Intn(len(runeSet))]
+		newRune := runeSetGLB[rand.Intn(len(runeSetGLB))]
 		runes = append(runes, newRune)
 	}
 
