@@ -23,21 +23,18 @@
 package generators
 
 import (
-	"strings"
 	"testing"
 )
 
-// The function CreteStringExamples generates
-// a string with the following properties:
-// 1) there are no leading nor trailing whitespaces
-// 2)
+// The function CreteStringExamples generates strings with properties that are used by
+// property based tests. This function generates two strings with the following properties:
+// 1) The strings might be equal
+// 2) The strings might have beggining and trailing whitespaces
+// 3) The strings might be equal up to a char index
+// 4) The strings might differ in the first char
+// 5) The strings might differ in more than one char
+// 6) The strings might differ in multiple chars in a row
+// 7) The strings might differ in  more than one non-consecutive char
 func TestCreateStringExamples(t *testing.T) {
 	left, right := CreateStringExamples()
-	
-	leftLines := strings.Split(left, " ")
-	rightLines := strings.Split(right, " ")
-
-	mismatchCount := 0
-
-	for ...
 }
