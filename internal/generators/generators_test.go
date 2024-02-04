@@ -27,14 +27,26 @@ import (
 )
 
 // The function CreteStringExamples generates strings with properties that are used by
-// property based tests. This function generates two strings with the following properties:
-// 1) The strings might be equal
-// 2) The strings might have beggining and trailing whitespaces
-// 3) The strings might be equal up to a char index
-// 4) The strings might differ in the first char
-// 5) The strings might differ in more than one char
-// 6) The strings might differ in multiple chars in a row
-// 7) The strings might differ in  more than one non-consecutive char
+// property based tests.
 func TestCreateStringExamples(t *testing.T) {
 	left, right := CreateStringExamples()
+
+	// 1) It should output two strings that are equal
+
+	// 2) It should output strings with beggining whitespaces
+
+	// 3) It should output strings with trailing whitespaces
+
+	// 4) It should output strings that differ on the first char
+
+	// 5) It should output strings that differ on the last char
+
+	// 6) It should output strings that differ on one char
+
+	// 7) It should output strings that differ on multiple consecutive chars
+
+	// 8) It should output strings that differ on more than one nonconsecutive char
+
+	// 9) It should output strings that differ on more than one window of consecutive chars
+
 }
