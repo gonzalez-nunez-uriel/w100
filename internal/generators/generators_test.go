@@ -23,6 +23,7 @@
 package generators
 
 import (
+	"regexp"
 	"testing"
 )
 
@@ -45,6 +46,21 @@ func TestCreateStringExamples(t *testing.T) {
 		}
 
 		// 2) It should output strings with beggining whitespaces
+		// " +" - one or more whitespaces in the beggining
+		// [^ ]+ - at least one nonwhite character
+		// ([^ ]+ ) - zero or more instances of at least one nonwhite char followed by a whitespace
+		leftMatch, err := regexp.MatchString(" +([^ ]+ )*[^ ]+", left)
+		if err != nil {
+			panic(err)
+		}
+
+		rightMatch, err := regexp.MatchString(" +([^ ]+ )*[^ ]+", right)
+		if err != nil {
+			panic(err)
+		}
+		if leftMatch || rightMatch {
+			flags[1] = true
+		}
 
 		// 3) It should output strings with trailing whitespaces
 
