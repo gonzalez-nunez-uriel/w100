@@ -31,7 +31,7 @@ import (
 func TestCreateStringExamples(t *testing.T) {
 
 	const numOfProperties = 9
-	var flags []bool
+	var flags [numOfProperties]bool
 
 	const numOfIterations = 10000
 
