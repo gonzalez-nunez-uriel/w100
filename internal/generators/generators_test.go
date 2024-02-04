@@ -29,7 +29,6 @@ import (
 // The function CreteStringExamples generates strings with properties that are used by
 // property based tests.
 func TestCreateStringExamples(t *testing.T) {
-	left, right := CreateStringExamples()
 
 	const numOfProperties = 9
 	var flags []bool
@@ -38,7 +37,12 @@ func TestCreateStringExamples(t *testing.T) {
 
 	for i := 0; i < numOfIterations; i++ {
 
+		left, right := CreateStringExamples()
+
 		// 1) It should output two strings that are equal
+		if left == right {
+			flags[0] = false
+		}
 
 		// 2) It should output strings with beggining whitespaces
 
