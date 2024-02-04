@@ -31,22 +31,30 @@ import (
 func TestCreateStringExamples(t *testing.T) {
 	left, right := CreateStringExamples()
 
-	// 1) It should output two strings that are equal
+	const numOfProperties = 9
+	var flags []bool
 
-	// 2) It should output strings with beggining whitespaces
+	const numOfIterations = 10000
 
-	// 3) It should output strings with trailing whitespaces
+	for i := 0; i < numOfIterations; i++ {
 
-	// 4) It should output strings that differ on the first char
+		// 1) It should output two strings that are equal
 
-	// 5) It should output strings that differ on the last char
+		// 2) It should output strings with beggining whitespaces
 
-	// 6) It should output strings that differ on one char
+		// 3) It should output strings with trailing whitespaces
 
-	// 7) It should output strings that differ on multiple consecutive chars
+		// 4) It should output strings that differ on the first char
 
-	// 8) It should output strings that differ on more than one nonconsecutive char
+		// 5) It should output strings that differ on the last char
 
-	// 9) It should output strings that differ on more than one window of consecutive chars
+		// 6) It should output strings that differ on one char
 
+		// 7) It should output strings that differ on multiple consecutive chars
+
+		// 8) It should output strings that differ on more than one nonconsecutive char
+
+		// 9) It should output strings that differ on more than one window of consecutive chars
+
+	}
 }
