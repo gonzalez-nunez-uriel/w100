@@ -41,7 +41,7 @@ func TestCreateStringExamples(t *testing.T) {
 
 		// 1) It should output two strings that are equal
 		if left == right {
-			flags[0] = false
+			flags[0] = true
 		}
 
 		// 2) It should output strings with beggining whitespaces
