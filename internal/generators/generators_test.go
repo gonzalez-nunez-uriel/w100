@@ -58,6 +58,7 @@ func TestCreateStringExamples(t *testing.T) {
 		if err != nil {
 			panic(err)
 		}
+
 		if leftMatch || rightMatch {
 			flags[1] = true
 		}
